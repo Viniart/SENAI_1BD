@@ -1,0 +1,46 @@
+CREATE DATABASE Pclinics;
+
+USE Pclinics;
+
+CREATE TABLE Racas
+(
+	idRaca INT PRIMARY KEY IDENTITY
+	,Nome VARCHAR(100) NOT NULL
+);
+CREATE TABLE Donos
+(
+	idDono INT PRIMARY KEY IDENTITY
+	,Nome VARCHAR(100) NOT NULL
+);
+CREATE TABLE Clinicas
+(
+	idClinica INT PRIMARY KEY IDENTITY
+	,Endereco VARCHAR(100)
+	,Nome VARCHAR(100)
+	,CNPJ VARCHAR(100)
+);
+CREATE TABLE Veterinarios
+(
+	idVeterinario INT PRIMARY KEY IDENTITY
+	,idClinica INT FOREIGN KEY REFERENCES Clinicas(idClinica)
+	,Nome VARCHAR(100)
+	,CPF VARCHAR(100)
+	,Salario DECIMAL (18,2)
+);
+CREATE TABLE Pets
+(
+	idPet INT PRIMARY KEY IDENTITY
+	,idRaca INT FOREIGN KEY REFERENCES Racas(idRaca)
+	,idDono INT FOREIGN KEY REFERENCES Donos(idDono)
+	,idClinica INT FOREIGN KEY REFERENCES Clinicas(idClinica)
+	,Nome VARCHAR(100)
+	,DataNasc DATE
+);
+CREATE TABLE Atendimentos
+(
+	idAtendimento INT PRIMARY KEY IDENTITY
+	,idPet INT FOREIGN KEY REFERENCES Pets(idPet)
+	,idVeterinario INT FOREIGN KEY REFERENCES Veterinarios(idVeterinario)
+	,DataAtendimento SMALLDATETIME 
+	,Valor DECIMAL(18,2)
+);
