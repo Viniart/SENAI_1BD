@@ -10,3 +10,4 @@ ON Filmes.idGenero = Generos.idGenero
 	'_ean' localiza todos q terminam com ean
 
 	Para caracteres especiais usar ESCAPE: %10-15!%% ESCAPE '!' ou []
+*/
